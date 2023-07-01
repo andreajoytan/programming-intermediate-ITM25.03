@@ -41,14 +41,14 @@ def shift_letter(letter, shift):
         import string
         alphabet = list(string.ascii_uppercase)
         if letter == " ":
-            print(" ")
+            return " "
         elif alphabet.index(letter) + shift <= 25:
-            print(alphabet[alphabet.index(letter) + shift])
+            return alphabet[alphabet.index(letter) + shift]
         else:
-            print(alphabet[(alphabet.index(letter)+shift)-26])
+            return alphabet[(alphabet.index(letter)+shift)-26]
             
     except:
-        print("Letter must be a single uppercase letter, or a space, and shift must be an integer.")
+        return "Letter must be a single uppercase letter, or a space, and shift must be an integer."
         
 shift_letter("Z", 4)
 
@@ -84,10 +84,10 @@ def caesar_cipher(message, shift):
                 lst.append(alphabet[alphabet.index(letter) + shift])
             else:
                 lst.append(alphabet[(alphabet.index(letter)+shift)-26])
-        print(''.join(lst))
+        return "".join(lst)
             
     except:
-        print("Message must be a string of uppercase letters and spaces, and shift must be an integer.")
+        return "Message must be a string of uppercase letters and spaces, and shift must be an integer."
         
 caesar_cipher("HI ANDREA", 2)
 
@@ -124,14 +124,14 @@ def shift_by_letter(letter, letter_shift):
         import string
         alphabet = list(string.ascii_uppercase)
         if letter == " ":
-            print(" ")
+            return " "
         elif alphabet.index(letter) + alphabet.index(letter_shift) <= 25:
-            print(alphabet[alphabet.index(letter) + alphabet.index(letter_shift)])
+            return alphabet[alphabet.index(letter) + alphabet.index(letter_shift)]
         else:
-            print(alphabet[(alphabet.index(letter)+alphabet.index(letter_shift))-26])
+            return alphabet[(alphabet.index(letter)+alphabet.index(letter_shift))-26]
             
     except:
-        print("Letter must be a single uppercase letter, or a space, and letter_shift must be a single uppercase letter.")
+        return "Letter must be a single uppercase letter, or a space, and letter_shift must be a single uppercase letter."
         
 shift_by_letter("C", "F")
 
@@ -183,10 +183,10 @@ def vigenere_cipher(message, key):
                     result.append(alphabet[alphabet.index(message[i])+alphabet.index(key[i])])
                 else:
                     result.append(alphabet[alphabet.index(message[i])+alphabet.index(key[i])-26])
-        print("".join(result))
+        return "".join(result)
         
     except:
-        print("Message must be a string of uppercase letters and spaces, and key must be a string of uppercase letters without spaces and not longer than the message.")
+        return "Message must be a string of uppercase letters and spaces, and key must be a string of uppercase letters without spaces and not longer than the message."
         
 vigenere_cipher("ABCDEF", "DEF")
 
@@ -251,10 +251,10 @@ def scytale_cipher(message, shift):
             for i in range(len(message)):
                 encoded_index = (i // shift) + (len(message) // shift) * (i % shift)
                 encoded_msg.append(message[encoded_index])
-        print("".join(encoded_msg))
+        return "".join(encoded_msg)
             
     except:
-        print("Message must be a string of uppercase English letters and underscores (underscores represent spaces), and shift must be a positive integer that does not exceed the length of the message.")
+        return "Message must be a string of uppercase English letters and underscores (underscores represent spaces), and shift must be a positive integer that does not exceed the length of the message."
 
 scytale_cipher("INFORMATION_AGE",3)
 
@@ -292,9 +292,9 @@ def scytale_decipher(message, shift):
             for i in range(len(message)):
                 decoded_index = (i // (len(message) // shift)) + (i % (len(message) // shift)) * shift  
                 decoded_msg.append(message[decoded_index])
-        print("".join(decoded_msg))
+        return "".join(decoded_msg)
             
     except:
-        print("Message must be a string of uppercase English letters and underscores (underscores represent spaces), and shift must be a positive integer that does not exceed the length of the message.")
+        return "Message must be a string of uppercase English letters and underscores (underscores represent spaces), and shift must be a positive integer that does not exceed the length of the message."
         
 scytale_decipher("IMNNA_FTAOIGROE", 3)
