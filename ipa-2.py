@@ -45,7 +45,7 @@ def shift_letter(letter, shift):
         elif alphabet.index(letter) + shift <= 25:
             return alphabet[alphabet.index(letter) + shift]
         else:
-            return alphabet[(alphabet.index(letter)+shift)-26]
+            return alphabet[(alphabet.index(letter)+shift)%26]
             
     except:
         return "Letter must be a single uppercase letter, or a space, and shift must be an integer."
@@ -83,7 +83,7 @@ def caesar_cipher(message, shift):
             elif alphabet.index(letter) + shift <= 25:
                 lst.append(alphabet[alphabet.index(letter) + shift])
             else:
-                lst.append(alphabet[(alphabet.index(letter)+shift)-26])
+                lst.append(alphabet[(alphabet.index(letter)+shift)%26])
         return "".join(lst)
             
     except:
@@ -128,7 +128,7 @@ def shift_by_letter(letter, letter_shift):
         elif alphabet.index(letter) + alphabet.index(letter_shift) <= 25:
             return alphabet[alphabet.index(letter) + alphabet.index(letter_shift)]
         else:
-            return alphabet[(alphabet.index(letter)+alphabet.index(letter_shift))-26]
+            return alphabet[(alphabet.index(letter)+alphabet.index(letter_shift))%26]
             
     except:
         return "Letter must be a single uppercase letter, or a space, and letter_shift must be a single uppercase letter."
@@ -179,10 +179,12 @@ def vigenere_cipher(message, key):
             alphabet = list(string.ascii_uppercase)
             result = []
             for i in range(len(message)):
-                if alphabet.index(message[i])+alphabet.index(key[i])<=25:
+                if message[i] == " ":
+                    result.append(" ")
+                elif alphabet.index(message[i])+alphabet.index(key[i])<=25:
                     result.append(alphabet[alphabet.index(message[i])+alphabet.index(key[i])])
                 else:
-                    result.append(alphabet[alphabet.index(message[i])+alphabet.index(key[i])-26])
+                    result.append(alphabet[(alphabet.index(message[i])+alphabet.index(key[i]))%26])
         return "".join(result)
         
     except:
